@@ -79,6 +79,8 @@
 		D50448021CF7D7CF00A4621F = {
 			isa = PBXGroup;
 			children = (
+				D50448121CF7D7CF00A4621F /* Main.storyboard */,
+				D504481A1CF7D7CF00A4621F /* LaunchScreen.storyboard */,
 				D504480D1CF7D7CF00A4621F /* DaysInState */,
 				D50448251CF7D7CF00A4621F /* DaysInStateTests */,
 				D50448301CF7D7CF00A4621F /* DaysInStateUITests */,
@@ -101,9 +103,7 @@
 			children = (
 				D504480E1CF7D7CF00A4621F /* AppDelegate.swift */,
 				D50448101CF7D7CF00A4621F /* ViewController.swift */,
-				D50448121CF7D7CF00A4621F /* Main.storyboard */,
 				D50448181CF7D7CF00A4621F /* Assets.xcassets */,
-				D504481A1CF7D7CF00A4621F /* LaunchScreen.storyboard */,
 				D504481D1CF7D7CF00A4621F /* Info.plist */,
 				D50448151CF7D7CF00A4621F /* DaysInState.xcdatamodeld */,
 			);
@@ -303,6 +303,7 @@
 				D50448131CF7D7CF00A4621F /* Base */,
 			);
 			name = Main.storyboard;
+			path = DaysInState;
 			sourceTree = "<group>";
 		};
 		D504481A1CF7D7CF00A4621F /* LaunchScreen.storyboard */ = {
@@ -311,6 +312,7 @@
 				D504481B1CF7D7CF00A4621F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = DaysInState;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -488,6 +490,7 @@
 				D50448381CF7D7CF00A4621F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D50448391CF7D7CF00A4621F /* Build configuration list for PBXNativeTarget "DaysInStateTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +499,7 @@
 				D504483B1CF7D7CF00A4621F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D504483C1CF7D7CF00A4621F /* Build configuration list for PBXNativeTarget "DaysInStateUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +508,7 @@
 				D504483E1CF7D7CF00A4621F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

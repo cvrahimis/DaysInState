@@ -9,10 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    var screenWidth: CGFloat =  0.0
+    var screenHeight: CGFloat = 0.0
+    @IBOutlet var remindersView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        screenWidth = self.view.frame.width
+        screenHeight = self.view.frame.height
+        
+        remindersView = UIView(frame: CGRectMake(0,0, screenWidth, screenHeight))
+        remindersView.backgroundColor = UIColor.blueColor()
+        remindersView.userInteractionEnabled = true
+        self.view.addSubview(remindersView)
     }
 
     override func didReceiveMemoryWarning() {
