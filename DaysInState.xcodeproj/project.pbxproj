@@ -15,6 +15,10 @@
 		D504481C1CF7D7CF00A4621F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D504481A1CF7D7CF00A4621F /* LaunchScreen.storyboard */; };
 		D50448271CF7D7CF00A4621F /* DaysInStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50448261CF7D7CF00A4621F /* DaysInStateTests.swift */; };
 		D50448321CF7D7CF00A4621F /* DaysInStateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50448311CF7D7CF00A4621F /* DaysInStateUITests.swift */; };
+		D504484B1CF7EE6200A4621F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D504484A1CF7EE6200A4621F /* CoreLocation.framework */; };
+		D504484D1CF7EE7200A4621F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D504484C1CF7EE7200A4621F /* MapKit.framework */; };
+		D50448511CF7F3EC00A4621F /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504484F1CF7F3EC00A4621F /* Geotification.swift */; };
+		D50448521CF7F3EC00A4621F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50448501CF7F3EC00A4621F /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		D504482D1CF7D7CF00A4621F /* DaysInStateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaysInStateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50448311CF7D7CF00A4621F /* DaysInStateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysInStateUITests.swift; sourceTree = "<group>"; };
 		D50448331CF7D7CF00A4621F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D504484A1CF7EE6200A4621F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D504484C1CF7EE7200A4621F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D504484F1CF7F3EC00A4621F /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
+		D50448501CF7F3EC00A4621F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D504484D1CF7EE7200A4621F /* MapKit.framework in Frameworks */,
+				D504484B1CF7EE6200A4621F /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +92,7 @@
 				D50448121CF7D7CF00A4621F /* Main.storyboard */,
 				D504481A1CF7D7CF00A4621F /* LaunchScreen.storyboard */,
 				D504480D1CF7D7CF00A4621F /* DaysInState */,
+				D504484E1CF7EE7A00A4621F /* Frameworks */,
 				D50448251CF7D7CF00A4621F /* DaysInStateTests */,
 				D50448301CF7D7CF00A4621F /* DaysInStateUITests */,
 				D504480C1CF7D7CF00A4621F /* Products */,
@@ -103,9 +114,10 @@
 			children = (
 				D504480E1CF7D7CF00A4621F /* AppDelegate.swift */,
 				D50448101CF7D7CF00A4621F /* ViewController.swift */,
+				D504484F1CF7F3EC00A4621F /* Geotification.swift */,
+				D50448501CF7F3EC00A4621F /* Utilities.swift */,
 				D50448181CF7D7CF00A4621F /* Assets.xcassets */,
-				D504481D1CF7D7CF00A4621F /* Info.plist */,
-				D50448151CF7D7CF00A4621F /* DaysInState.xcdatamodeld */,
+				D509D6231CFA0A6F0066F361 /* Supporting Files */,
 			);
 			path = DaysInState;
 			sourceTree = "<group>";
@@ -126,6 +138,24 @@
 				D50448331CF7D7CF00A4621F /* Info.plist */,
 			);
 			path = DaysInStateUITests;
+			sourceTree = "<group>";
+		};
+		D504484E1CF7EE7A00A4621F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D504484C1CF7EE7200A4621F /* MapKit.framework */,
+				D504484A1CF7EE6200A4621F /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D509D6231CFA0A6F0066F361 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D504481D1CF7D7CF00A4621F /* Info.plist */,
+				D50448151CF7D7CF00A4621F /* DaysInState.xcdatamodeld */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +292,8 @@
 				D50448111CF7D7CF00A4621F /* ViewController.swift in Sources */,
 				D504480F1CF7D7CF00A4621F /* AppDelegate.swift in Sources */,
 				D50448171CF7D7CF00A4621F /* DaysInState.xcdatamodeld in Sources */,
+				D50448521CF7F3EC00A4621F /* Utilities.swift in Sources */,
+				D50448511CF7F3EC00A4621F /* Geotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

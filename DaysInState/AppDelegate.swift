@@ -8,18 +8,32 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        var rootView: ViewController = ViewController()
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        let rootView: ViewController = ViewController()
+        
+        let navController: UINavigationController = UINavigationController()
+        navController.setNavigationBarHidden(false, animated: true)
+        navController.setToolbarHidden(false, animated: true)
+        navController.addChildViewController(rootView)
+        
         
         if let window = self.window{
-            window.rootViewController = rootView
+            window.rootViewController = navController
         }
         return true
     }
