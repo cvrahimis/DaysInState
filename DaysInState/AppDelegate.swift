@@ -24,11 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        let rootView: ViewController = ViewController()
+        //let rootView: ViewController = ViewController()
+        let rootView: InfoViewController = InfoViewController();
         
         let navController: UINavigationController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: true)
-        navController.setToolbarHidden(false, animated: true)
+        //navController.setToolbarHidden(false, animated: true)
         navController.addChildViewController(rootView)
         
         

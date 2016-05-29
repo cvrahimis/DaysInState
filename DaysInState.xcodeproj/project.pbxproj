@@ -19,6 +19,13 @@
 		D504484D1CF7EE7200A4621F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D504484C1CF7EE7200A4621F /* MapKit.framework */; };
 		D50448511CF7F3EC00A4621F /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D504484F1CF7F3EC00A4621F /* Geotification.swift */; };
 		D50448521CF7F3EC00A4621F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50448501CF7F3EC00A4621F /* Utilities.swift */; };
+		D509D6791CFA57F20066F361 /* Locations+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D66E1CFA57F20066F361 /* Locations+CoreDataProperties.m */; };
+		D509D67A1CFA57F20066F361 /* Locations.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6701CFA57F20066F361 /* Locations.m */; };
+		D509D67B1CFA57F20066F361 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6721CFA57F20066F361 /* User+CoreDataProperties.m */; };
+		D509D67C1CFA57F20066F361 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6741CFA57F20066F361 /* User.m */; };
+		D509D67D1CFA57F20066F361 /* Address+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6761CFA57F20066F361 /* Address+CoreDataProperties.m */; };
+		D509D67E1CFA57F20066F361 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6781CFA57F20066F361 /* Address.m */; };
+		D509D6811CFA59F10066F361 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509D6801CFA59F10066F361 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +64,20 @@
 		D504484C1CF7EE7200A4621F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D504484F1CF7F3EC00A4621F /* Geotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		D50448501CF7F3EC00A4621F /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		D509D66C1CFA57F20066F361 /* DaysInState-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DaysInState-Bridging-Header.h"; sourceTree = "<group>"; };
+		D509D66D1CFA57F20066F361 /* Locations+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Locations+CoreDataProperties.h"; path = "../Locations+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D509D66E1CFA57F20066F361 /* Locations+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Locations+CoreDataProperties.m"; path = "../Locations+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D509D66F1CFA57F20066F361 /* Locations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Locations.h; path = ../Locations.h; sourceTree = "<group>"; };
+		D509D6701CFA57F20066F361 /* Locations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Locations.m; path = ../Locations.m; sourceTree = "<group>"; };
+		D509D6711CFA57F20066F361 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "../User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D509D6721CFA57F20066F361 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "../User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D509D6731CFA57F20066F361 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = ../User.h; sourceTree = "<group>"; };
+		D509D6741CFA57F20066F361 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = ../User.m; sourceTree = "<group>"; };
+		D509D6751CFA57F20066F361 /* Address+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Address+CoreDataProperties.h"; path = "../Address+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D509D6761CFA57F20066F361 /* Address+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Address+CoreDataProperties.m"; path = "../Address+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D509D6771CFA57F20066F361 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Address.h; path = ../Address.h; sourceTree = "<group>"; };
+		D509D6781CFA57F20066F361 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = ../Address.m; sourceTree = "<group>"; };
+		D509D6801CFA59F10066F361 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +117,7 @@
 				D50448251CF7D7CF00A4621F /* DaysInStateTests */,
 				D50448301CF7D7CF00A4621F /* DaysInStateUITests */,
 				D504480C1CF7D7CF00A4621F /* Products */,
+				D509D66C1CFA57F20066F361 /* DaysInState-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,9 +136,11 @@
 			children = (
 				D504480E1CF7D7CF00A4621F /* AppDelegate.swift */,
 				D50448101CF7D7CF00A4621F /* ViewController.swift */,
+				D509D6801CFA59F10066F361 /* InfoViewController.swift */,
 				D504484F1CF7F3EC00A4621F /* Geotification.swift */,
 				D50448501CF7F3EC00A4621F /* Utilities.swift */,
 				D50448181CF7D7CF00A4621F /* Assets.xcassets */,
+				D509D67F1CFA57FC0066F361 /* DBObjects */,
 				D509D6231CFA0A6F0066F361 /* Supporting Files */,
 			);
 			path = DaysInState;
@@ -156,6 +180,25 @@
 				D50448151CF7D7CF00A4621F /* DaysInState.xcdatamodeld */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D509D67F1CFA57FC0066F361 /* DBObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D509D66D1CFA57F20066F361 /* Locations+CoreDataProperties.h */,
+				D509D66E1CFA57F20066F361 /* Locations+CoreDataProperties.m */,
+				D509D66F1CFA57F20066F361 /* Locations.h */,
+				D509D6701CFA57F20066F361 /* Locations.m */,
+				D509D6711CFA57F20066F361 /* User+CoreDataProperties.h */,
+				D509D6721CFA57F20066F361 /* User+CoreDataProperties.m */,
+				D509D6731CFA57F20066F361 /* User.h */,
+				D509D6741CFA57F20066F361 /* User.m */,
+				D509D6751CFA57F20066F361 /* Address+CoreDataProperties.h */,
+				D509D6761CFA57F20066F361 /* Address+CoreDataProperties.m */,
+				D509D6771CFA57F20066F361 /* Address.h */,
+				D509D6781CFA57F20066F361 /* Address.m */,
+			);
+			name = DBObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,8 +334,15 @@
 			files = (
 				D50448111CF7D7CF00A4621F /* ViewController.swift in Sources */,
 				D504480F1CF7D7CF00A4621F /* AppDelegate.swift in Sources */,
+				D509D67E1CFA57F20066F361 /* Address.m in Sources */,
+				D509D67D1CFA57F20066F361 /* Address+CoreDataProperties.m in Sources */,
+				D509D67C1CFA57F20066F361 /* User.m in Sources */,
+				D509D6791CFA57F20066F361 /* Locations+CoreDataProperties.m in Sources */,
 				D50448171CF7D7CF00A4621F /* DaysInState.xcdatamodeld in Sources */,
 				D50448521CF7F3EC00A4621F /* Utilities.swift in Sources */,
+				D509D67A1CFA57F20066F361 /* Locations.m in Sources */,
+				D509D67B1CFA57F20066F361 /* User+CoreDataProperties.m in Sources */,
+				D509D6811CFA59F10066F361 /* InfoViewController.swift in Sources */,
 				D50448511CF7F3EC00A4621F /* Geotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,10 +489,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DaysInState/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cvrahimis.computernetics.DaysInState;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DaysInState-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -450,10 +503,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = DaysInState/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cvrahimis.computernetics.DaysInState;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DaysInState-Bridging-Header.h";
 			};
 			name = Release;
 		};
