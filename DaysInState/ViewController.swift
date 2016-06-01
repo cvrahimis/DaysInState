@@ -142,15 +142,6 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         if let country = placeMark.addressDictionary!["Country"] as? NSString {
             print(country)
         }
-        
-        /*if let address = placeMark.addressDictionary![""] as? NSArray {
-            let number = address[0]["short_name"] as! String
-            let street = address[1]["short_name"] as! String
-            let city = address[2]["short_name"] as! String
-            let state = address[4]["short_name"] as! String
-            let zip = address[6]["short_name"] as! String
-            print("\n\(number) \(street), \(city), \(state) \(zip)")
-        }*/
     }
 
 }

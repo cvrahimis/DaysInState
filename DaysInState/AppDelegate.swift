@@ -24,8 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        //let rootView: ViewController = ViewController()
-        let rootView: InfoViewController = InfoViewController();
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        var results = [AnyObject]()
+        
+        do{
+            results = try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+        } catch let error as NSError{
+           print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        var rootView = UIViewController()
+        if results.count > 0 {
+            rootView = ViewController()
+        }
+        else{
+            rootView = InfoViewController()
+        }
         
         let navController: UINavigationController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: true)

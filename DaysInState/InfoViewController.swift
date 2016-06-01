@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate{
     var screenWidth: CGFloat =  0.0
@@ -21,8 +22,10 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
     @IBOutlet var city: UITextField!
     @IBOutlet var state: UITextField!
     @IBOutlet var zip: UITextField!
+    @IBOutlet var email: UITextField!
     @IBOutlet var label: UILabel!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +38,16 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         mainView = UIView(frame: CGRectMake(0,0, screenWidth, screenHeight))
         mainView.backgroundColor = UIColor.redColor()
         mainView.userInteractionEnabled = true
+        mainView.layer.contents = UIImage(named:"satelliteEastUSA.png")!.CGImage
+        
+        imageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
+        imageView.image = UIImage(named: "satelliteEastUSA.png")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(donePressed))
         
         scrollView = UIScrollView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
         //scrollView.center = CGPointMake(screenWidth * 0.5, screenHeight)
-        scrollView.backgroundColor = UIColor.blueColor()
+        scrollView.backgroundColor = UIColor.clearColor()
         scrollView.pagingEnabled = false
         scrollView.scrollEnabled = true
         scrollView.userInteractionEnabled = true
@@ -49,7 +58,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.contentOffset = CGPoint(x: 0, y: 0)
         
         firstName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        firstName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.1)
+        firstName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.05)
         firstName.delegate = self
         firstName.layer.cornerRadius = 10
         firstName.clipsToBounds = true
@@ -59,7 +68,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(firstName)
         
         lastName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        lastName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.2)
+        lastName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.15)
         lastName.delegate = self
         lastName.layer.cornerRadius = 10
         lastName.clipsToBounds = true
@@ -69,7 +78,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(lastName)
         
         label = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.9, screenHeight * 0.2))
-        label.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.3)
+        label.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.25)
         label.backgroundColor = UIColor.clearColor()
         label.text = "Please input your name and primary Address"
         label.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
@@ -82,7 +91,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(label)
         
         address1 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        address1.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.4)
+        address1.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.35)
         address1.delegate = self
         address1.layer.cornerRadius = 10
         address1.clipsToBounds = true
@@ -92,7 +101,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(address1)
         
         address2 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        address2.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.5)
+        address2.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.45)
         address2.delegate = self
         address2.layer.cornerRadius = 10
         address2.clipsToBounds = true
@@ -102,7 +111,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(address2)
         
         city = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        city.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.6)
+        city.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.55)
         city.delegate = self
         city.layer.cornerRadius = 10
         city.clipsToBounds = true
@@ -112,7 +121,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(city)
         
         state = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        state.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.7)
+        state.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.65)
         state.delegate = self
         state.layer.cornerRadius = 10
         state.clipsToBounds = true
@@ -122,7 +131,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.addSubview(state)
         
         zip = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        zip.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.8)
+        zip.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.75)
         zip.delegate = self
         zip.layer.cornerRadius = 10
         zip.clipsToBounds = true
@@ -130,9 +139,56 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         zip.backgroundColor = UIColor.whiteColor()
         zip.tag = 6
         scrollView.addSubview(zip)
-       
+        
+        email = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        email.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.85)
+        email.delegate = self
+        email.layer.cornerRadius = 10
+        email.clipsToBounds = true
+        email.placeholder = " Email@example.com"
+        email.backgroundColor = UIColor.whiteColor()
+        email.tag = 7
+        scrollView.addSubview(email)
+        mainView.addSubview(imageView)
         mainView.addSubview(scrollView)
         self.view.addSubview(mainView)
+    }
+    
+    func saveUser(name: String) {
+        //1
+        let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext:managedContext)
+        
+        let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        //3
+        user.setValue(name, forKey: "name")
+        
+        //4
+        do {
+            try managedContext.save()
+            //5
+            //people.append(person)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+
+    func donePressed(){
+        //saveUser("Bill")
+        print(firstName.text! + " " + lastName.text! + " ")
+        let viewController = ViewController()
+        viewController.modalPresentationStyle = .OverCurrentContext
+        
+        let navCtrl:UINavigationController = UINavigationController()
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        navCtrl.addChildViewController(viewController)
+        self.presentViewController(navCtrl, animated: true, completion: nil)
     }
     
     func scrollViewTap(){
@@ -141,34 +197,40 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        scrollView.contentOffset = CGPoint(x: 0, y: (Int(textField.bounds.height) * textField.tag))
+        if (textField.tag > 1)//Dont scroll for the first 2 textboxes
+        {
+            scrollView.contentOffset = CGPoint(x: 0, y: (Int(textField.bounds.height) * textField.tag))
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         switch textField.tag
         {
-            case 0:
-                lastName.becomeFirstResponder()
-                lastName.delegate = self
-            case 1:
-                address1.becomeFirstResponder()
-                address1.delegate = self
-            case 2:
-                address2.becomeFirstResponder()
-                address2.delegate = self
-            case 3:
-                city.becomeFirstResponder()
-                city.delegate = self
-            case 4:
-                state.becomeFirstResponder()
-                state.delegate = self
-            case 5:
-                zip.becomeFirstResponder()
-                zip.delegate = self
-            default:
-                self.view.endEditing(true)
-                scrollView.contentOffset = CGPoint(x: 0, y: -64) //find mathamatical way to calculate 64
+        case 0:
+            lastName.becomeFirstResponder()
+            lastName.delegate = self
+        case 1:
+            address1.becomeFirstResponder()
+            address1.delegate = self
+        case 2:
+            address2.becomeFirstResponder()
+            address2.delegate = self
+        case 3:
+            city.becomeFirstResponder()
+            city.delegate = self
+        case 4:
+            state.becomeFirstResponder()
+            state.delegate = self
+        case 5:
+            zip.becomeFirstResponder()
+            zip.delegate = self
+        case 6:
+            email.becomeFirstResponder()
+            email.delegate = self
+        default:
+            self.view.endEditing(true)
+            scrollView.contentOffset = CGPoint(x: 0, y: -64) //find mathamatical way to calculate 64
         }
         
         return false;
