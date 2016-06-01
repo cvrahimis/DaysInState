@@ -26,6 +26,7 @@
 		D509D67D1CFA57F20066F361 /* Address+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6761CFA57F20066F361 /* Address+CoreDataProperties.m */; };
 		D509D67E1CFA57F20066F361 /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = D509D6781CFA57F20066F361 /* Address.m */; };
 		D509D6811CFA59F10066F361 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509D6801CFA59F10066F361 /* InfoViewController.swift */; };
+		D51438C61CFF09DA0066940D /* satelliteEastUSA.png in Resources */ = {isa = PBXBuildFile; fileRef = D51438C51CFF09DA0066940D /* satelliteEastUSA.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		D509D6771CFA57F20066F361 /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Address.h; path = ../Address.h; sourceTree = "<group>"; };
 		D509D6781CFA57F20066F361 /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = ../Address.m; sourceTree = "<group>"; };
 		D509D6801CFA59F10066F361 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		D51438C51CFF09DA0066940D /* satelliteEastUSA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satelliteEastUSA.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				D504484F1CF7F3EC00A4621F /* Geotification.swift */,
 				D50448501CF7F3EC00A4621F /* Utilities.swift */,
 				D50448181CF7D7CF00A4621F /* Assets.xcassets */,
+				D51438C51CFF09DA0066940D /* satelliteEastUSA.png */,
 				D509D67F1CFA57FC0066F361 /* DBObjects */,
 				D509D6231CFA0A6F0066F361 /* Supporting Files */,
 			);
@@ -305,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51438C61CFF09DA0066940D /* satelliteEastUSA.png in Resources */,
 				D504481C1CF7D7CF00A4621F /* LaunchScreen.storyboard in Resources */,
 				D50448191CF7D7CF00A4621F /* Assets.xcassets in Resources */,
 				D50448141CF7D7CF00A4621F /* Main.storyboard in Resources */,
