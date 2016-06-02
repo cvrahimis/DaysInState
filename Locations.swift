@@ -1,15 +1,17 @@
 //
-//  Locations.m
+//  Locations.swift
 //  DaysInState
 //
-//  Created by Costas Vrahimis on 5/28/16.
+//  Created by Costas Vrahimis on 6/1/16.
 //  Copyright © 2016 Costas Vrahimis. All rights reserved.
 //
 
-#import "Locations.h"
+import Foundation
+import CoreData
 
-@implementation Locations
+@objc(Locations)
+class Locations: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
-@end
+}

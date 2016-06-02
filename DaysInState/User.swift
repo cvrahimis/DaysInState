@@ -1,16 +1,17 @@
 //
-//  User.m
+//  User.swift
 //  DaysInState
 //
-//  Created by Costas Vrahimis on 5/28/16.
+//  Created by Costas Vrahimis on 6/1/16.
 //  Copyright © 2016 Costas Vrahimis. All rights reserved.
 //
 
-#import "User.h"
-#import "Locations.h"
+import Foundation
+import CoreData
 
-@implementation User
+@objc(User)
+class User: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
-@end
+}

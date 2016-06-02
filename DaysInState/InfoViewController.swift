@@ -55,25 +55,29 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         let touch = UITapGestureRecognizer(target:self, action:#selector(InfoViewController.scrollViewTap))
         scrollView.addGestureRecognizer(touch)
         scrollView.contentSize = CGSizeMake(screenWidth, screenHeight * 1.3)
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        scrollView.contentOffset = CGPoint(x: 0, y: -64)
         
-        firstName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        
+        
+        firstName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         firstName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.05)
         firstName.delegate = self
         firstName.layer.cornerRadius = 10
         firstName.clipsToBounds = true
         firstName.placeholder = " First Name"
         firstName.backgroundColor = UIColor.whiteColor()
+        firstName.autocorrectionType = .No
         firstName.tag = 0
         scrollView.addSubview(firstName)
         
-        lastName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
-        lastName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.15)
+        lastName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
+        lastName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.125)
         lastName.delegate = self
         lastName.layer.cornerRadius = 10
         lastName.clipsToBounds = true
         lastName.placeholder = " Last Name"
         lastName.backgroundColor = UIColor.whiteColor()
+        lastName.autocorrectionType = .No
         lastName.tag = 1
         scrollView.addSubview(lastName)
         
@@ -90,37 +94,40 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         //label.layer.borderWidth = 3
         scrollView.addSubview(label)
         
-        address1 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        address1 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         address1.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.35)
         address1.delegate = self
         address1.layer.cornerRadius = 10
         address1.clipsToBounds = true
         address1.placeholder = " Address line 1"
         address1.backgroundColor = UIColor.whiteColor()
+        address1.autocorrectionType = .No
         address1.tag = 2
         scrollView.addSubview(address1)
         
-        address2 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        address2 = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         address2.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.45)
         address2.delegate = self
         address2.layer.cornerRadius = 10
         address2.clipsToBounds = true
         address2.placeholder = " Address line 2"
         address2.backgroundColor = UIColor.whiteColor()
+        address2.autocorrectionType = .No
         address2.tag = 3
         scrollView.addSubview(address2)
         
-        city = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        city = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         city.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.55)
         city.delegate = self
         city.layer.cornerRadius = 10
         city.clipsToBounds = true
         city.placeholder = " City"
         city.backgroundColor = UIColor.whiteColor()
+        city.autocorrectionType = .No
         city.tag = 4
         scrollView.addSubview(city)
         
-        state = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        state = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         state.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.65)
         state.delegate = self
         state.layer.cornerRadius = 10
@@ -130,65 +137,111 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         state.tag = 5
         scrollView.addSubview(state)
         
-        zip = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        zip = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         zip.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.75)
         zip.delegate = self
         zip.layer.cornerRadius = 10
         zip.clipsToBounds = true
         zip.placeholder = " Zip"
         zip.backgroundColor = UIColor.whiteColor()
+        zip.autocorrectionType = .No
+        zip.keyboardType = UIKeyboardType.NumberPad
         zip.tag = 6
         scrollView.addSubview(zip)
         
-        email = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.75, screenHeight * 0.075))
+        email = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         email.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.85)
         email.delegate = self
         email.layer.cornerRadius = 10
         email.clipsToBounds = true
         email.placeholder = " Email@example.com"
         email.backgroundColor = UIColor.whiteColor()
+        email.autocorrectionType = .No
+        email.keyboardType = UIKeyboardType.EmailAddress
+        email.autocapitalizationType = UITextAutocapitalizationType.None
         email.tag = 7
         scrollView.addSubview(email)
+        
         mainView.addSubview(imageView)
         mainView.addSubview(scrollView)
         self.view.addSubview(mainView)
     }
     
-    func saveUser(name: String) {
-        //1
-        let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
+    func saveUser() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
+    
+        let userEntity =  NSEntityDescription.entityForName("User", inManagedObjectContext:managedContext)
+        let userObject = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: managedContext)
         
-        //2
-        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext:managedContext)
+        let addressEntity =  NSEntityDescription.entityForName("Address", inManagedObjectContext:managedContext)
+        let addressObject = NSManagedObject(entity: addressEntity!, insertIntoManagedObjectContext: managedContext)
         
-        let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        print("\(firstName.text) \(lastName.text) \(email.text)")
         
-        //3
-        user.setValue(name, forKey: "name")
+        userObject.setValue(firstName.text, forKey: "firstName")
+        userObject.setValue(lastName.text, forKey: "lastName")
+        userObject.setValue(email.text, forKey: "email")
         
-        //4
+        print("\(address1.text) \(address2.text) \(city.text) \(state.text) \(zip.text)")
+        addressObject.setValue(address1.text, forKey: "address1")
+        addressObject.setValue(address2.text, forKey: "address2")
+        addressObject.setValue(city.text, forKey: "city")
+        addressObject.setValue(state.text, forKey: "state")
+        addressObject.setValue(zip.text, forKey: "zip")
+        
+        userObject.setValue(addressObject, forKey: "address")
+        addressObject.setValue(userObject, forKey: "user")
+        
         do {
             try managedContext.save()
-            //5
-            //people.append(person)
+            print("It Worked")
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
     }
 
     func donePressed(){
-        //saveUser("Bill")
-        print(firstName.text! + " " + lastName.text! + " ")
-        let viewController = ViewController()
-        viewController.modalPresentationStyle = .OverCurrentContext
+        if !isTextFieldEmpty()
+        {
+            let alert = UIAlertController(title: "Error", message: "Must fill all fields", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else if !isValidEmail(self.email.text!){
+            let alert = UIAlertController(title: "Error", message: "Must have valid email", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else
+        {
+            saveUser()
+            let viewController = ViewController()
+            viewController.modalPresentationStyle = .OverCurrentContext
+            let navCtrl:UINavigationController = UINavigationController()
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            navCtrl.addChildViewController(viewController)
+            self.presentViewController(navCtrl, animated: true, completion: nil)
+        }
+    }
+    
+    func isTextFieldEmpty() -> Bool{
+        for case let textField as UITextField in self.scrollView.subviews {
+            if textField.text == "" && textField.tag != 3 //address2 tag
+            {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
-        let navCtrl:UINavigationController = UINavigationController()
-        self.navigationController?.popToRootViewControllerAnimated(true)
-        navCtrl.addChildViewController(viewController)
-        self.presentViewController(navCtrl, animated: true, completion: nil)
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
     }
     
     func scrollViewTap(){
@@ -199,7 +252,7 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
     func textFieldDidBeginEditing(textField: UITextField) {
         if (textField.tag > 1)//Dont scroll for the first 2 textboxes
         {
-            scrollView.contentOffset = CGPoint(x: 0, y: (Int(textField.bounds.height) * textField.tag))
+            scrollView.contentOffset = CGPoint(x: 0, y: (Int(textField.bounds.height / 2) * textField.tag))
         }
     }
     
