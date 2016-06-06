@@ -57,8 +57,6 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         scrollView.contentSize = CGSizeMake(screenWidth, screenHeight * 1.3)
         scrollView.contentOffset = CGPoint(x: 0, y: -64)
         
-        
-        
         firstName = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.7, screenHeight * 0.060))
         firstName.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.05)
         firstName.delegate = self
@@ -162,44 +160,106 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         email.tag = 7
         scrollView.addSubview(email)
         
+        //fillData()
+        
         mainView.addSubview(imageView)
         mainView.addSubview(scrollView)
         self.view.addSubview(mainView)
     }
     
-    func saveUser() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
+    override func viewWillDisappear(animated: Bool) {
+        donePressed()
+    }
     
-        let userEntity =  NSEntityDescription.entityForName("User", inManagedObjectContext:managedContext)
-        let userObject = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: managedContext)
+    override func viewWillAppear(animated: Bool) {
+        fillData()
+    }
+    
+    func fillData(){
+        //Fetch User Info
+        var user:User?
+        var address:Address?
+        let result = isUserOnDevice()
+        if result.flag {
+            user = result.user!
+            address = user!.valueForKey("address") as? Address
+
+            firstName.text = String(user!.valueForKey("firstName")!)
+            lastName.text = String(user!.valueForKey("lastName")!)
+            email.text = String(user!.valueForKey("email")!)
+            address1.text = String(address!.valueForKey("address1")!)
+            address2.text = String(address!.valueForKey("address2")!)
+            city.text = String(address!.valueForKey("city")!)
+            state.text = String(address!.valueForKey("state")!)
+            zip.text = String(address!.valueForKey("zip")!)
+        }
+    }
+    
+    func isUserOnDevice() -> (flag: Bool, user: User? ){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
         
-        let addressEntity =  NSEntityDescription.entityForName("Address", inManagedObjectContext:managedContext)
-        let addressObject = NSManagedObject(entity: addressEntity!, insertIntoManagedObjectContext: managedContext)
-        
-        print("\(firstName.text) \(lastName.text) \(email.text)")
-        
-        userObject.setValue(firstName.text, forKey: "firstName")
-        userObject.setValue(lastName.text, forKey: "lastName")
-        userObject.setValue(email.text, forKey: "email")
-        
-        print("\(address1.text) \(address2.text) \(city.text) \(state.text) \(zip.text)")
-        addressObject.setValue(address1.text, forKey: "address1")
-        addressObject.setValue(address2.text, forKey: "address2")
-        addressObject.setValue(city.text, forKey: "city")
-        addressObject.setValue(state.text, forKey: "state")
-        addressObject.setValue(zip.text, forKey: "zip")
-        
-        userObject.setValue(addressObject, forKey: "address")
-        addressObject.setValue(userObject, forKey: "user")
+        let fetchRequest = NSFetchRequest(entityName: "User")
         
         do {
-            try managedContext.save()
-            print("It Worked")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+            let results:NSArray = try managedContext.executeFetchRequest(fetchRequest)
+            if results.count > 0
+            {
+                return(true, (results.objectAtIndex(0) as? User)!)
+            }
         }
+        catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        return(false, nil)
+    }
+    
+    func saveUser() -> Bool{
+        //Save User Info
+        var user:User?
+        let result = isUserOnDevice()
+        if result.flag {
+            user?.setValue(firstName.text, forKey: "firstName")
+            user?.setValue(lastName.text, forKey: "lastName")
+            //user?
+        }
+        else {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+            let managedContext = appDelegate.managedObjectContext
+    
+            let userEntity =  NSEntityDescription.entityForName("User", inManagedObjectContext:managedContext)
+            let userObject = NSManagedObject(entity: userEntity!, insertIntoManagedObjectContext: managedContext)
+        
+            let addressEntity =  NSEntityDescription.entityForName("Address", inManagedObjectContext:managedContext)
+            let addressObject = NSManagedObject(entity: addressEntity!, insertIntoManagedObjectContext: managedContext)
+        
+            print("\(firstName.text) \(lastName.text) \(email.text)")
+        
+            userObject.setValue(firstName.text, forKey: "firstName")
+            userObject.setValue(lastName.text, forKey: "lastName")
+            userObject.setValue(email.text, forKey: "email")
+        
+            print("\(address1.text) \(address2.text) \(city.text) \(state.text) \(zip.text)")
+            addressObject.setValue(address1.text, forKey: "address1")
+            addressObject.setValue(address2.text, forKey: "address2")
+            addressObject.setValue(city.text, forKey: "city")
+            addressObject.setValue(state.text, forKey: "state")
+            addressObject.setValue(zip.text, forKey: "zip")
+        
+            userObject.setValue(addressObject, forKey: "address")
+            addressObject.setValue(userObject, forKey: "user")
+            
+            do {
+                try managedContext.save()
+                print("It Worked")
+                return true
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            }
+            return false
+        }
+        return true
     }
 
     func donePressed(){
@@ -216,13 +276,14 @@ class InfoViewController: UIViewController, UITextFieldDelegate, UIScrollViewDel
         }
         else
         {
-            saveUser()
-            let viewController = ViewController()
-            viewController.modalPresentationStyle = .OverCurrentContext
-            let navCtrl:UINavigationController = UINavigationController()
-            self.navigationController?.popToRootViewControllerAnimated(true)
-            navCtrl.addChildViewController(viewController)
-            self.presentViewController(navCtrl, animated: true, completion: nil)
+            if saveUser(){
+                let viewController = ViewController()
+                viewController.modalPresentationStyle = .OverCurrentContext
+                let navCtrl:UINavigationController = UINavigationController()
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                navCtrl.addChildViewController(viewController)
+                self.presentViewController(navCtrl, animated: true, completion: nil)
+            }
         }
     }
     

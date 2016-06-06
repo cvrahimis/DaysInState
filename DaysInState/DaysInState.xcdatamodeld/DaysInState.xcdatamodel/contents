@@ -20,11 +20,11 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="user" inverseEntity="Address" syncable="YES"/>
-        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Locations" inverseName="user" inverseEntity="Locations" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Locations" inverseName="user" inverseEntity="Locations" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Address" positionX="-54" positionY="9" width="128" height="135"/>
-        <element name="Locations" positionX="-36" positionY="54" width="128" height="120"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Address" positionX="-308" positionY="-216" width="128" height="135"/>
+        <element name="Locations" positionX="178" positionY="-180" width="128" height="120"/>
+        <element name="User" positionX="-63" positionY="-180" width="128" height="118"/>
     </elements>
 </model>
