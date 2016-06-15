@@ -34,12 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         var rootView = UIViewController()
-        if results.count > 0 {
+        //if results.count > 0 {
             rootView = ViewController()
-        }
-        else{
-            rootView = InfoViewController()
-        }
+        //}
+        //else{
+        //    rootView = InfoViewController()
+        //}
         
         let navController: UINavigationController = UINavigationController()
         navController.setNavigationBarHidden(false, animated: true)

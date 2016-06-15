@@ -9,6 +9,9 @@
 import UIKit
 import MapKit
 import LocalAuthentication
+import CoreMotion
+
+let MPH = 2.23694
 
 class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDelegate{
     var screenWidth: CGFloat =  0.0
@@ -18,6 +21,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
     @IBOutlet var mapContainerView: UIView!
     @IBOutlet var logLocBtn: UIButton!
     @IBOutlet var statusLabel: UILabel!
+    var motionManager: CMAltimeter! = nil
     var mapView: MKMapView!
     
     //var geotifications = [Geotification]()
@@ -30,6 +34,9 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         
         screenWidth = self.view.frame.width
         screenHeight = self.view.frame.height
+        
+        motionManager = CMAltimeter()
+        getAltitude()
         
         mainView = UIView(frame: CGRectMake(0,0, screenWidth, screenHeight))
         mainView.backgroundColor = UIColor.whiteColor()
@@ -57,8 +64,8 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         statusLabel.center = CGPointMake(screenWidth * 0.5, screenHeight * 0.75)
         statusLabel.backgroundColor = UIColor.clearColor()
         statusLabel.text = "Unknown user"
-        //statusLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
-        //statusLabel.numberOfLines = 2
+        statusLabel.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+        statusLabel.numberOfLines = 2
         statusLabel.font = UIFont(name: statusLabel.font.fontName, size: 32)
         statusLabel.textColor = UIColor.blueColor()
         statusLabel.textAlignment = NSTextAlignment.Center
@@ -70,6 +77,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         logLocBtn.center = CGPoint( x: screenWidth * 0.5, y: screenHeight * 0.85)
         logLocBtn.backgroundColor = UIColor.blueColor()
         logLocBtn.setTitle("Log Location with Finger Print", forState: UIControlState.Normal)
+        logLocBtn.titleLabel!.font =  UIFont(name: "AvenirNext-Regular", size: 15)
         logLocBtn.addTarget(self, action: #selector(logLocPress), forControlEvents: UIControlEvents.TouchUpInside)
         logLocBtn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         logLocBtn.layer.cornerRadius = 20
@@ -88,6 +96,10 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         
         // 3
         //loadAllGeotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        locationManager.stopUpdatingLocation()
     }
     
     func logLocPress(){
@@ -125,7 +137,6 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.setRegion(region, animated: true)
-        locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error) -> Void in
             if (error != nil) {
@@ -140,6 +151,12 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
                 print("Problem with the data received from geocoder")
             }
         })
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        let currentLocation = newLocation;
+        let spd =  String(currentLocation.speed * MPH)
+        print("speed: \(spd)")
     }
     
     func displayLocationInfo(placeMark: CLPlacemark) {
@@ -262,6 +279,21 @@ class ViewController: UIViewController , CLLocationManagerDelegate, MKMapViewDel
             self.loadDada()
         } else {
             self.showPasswordAlert()
+        }
+    }
+    
+    //===============================Altimeter==========================================
+    
+    func getAltitude(){
+        if CMAltimeter.isRelativeAltitudeAvailable() {
+            self.motionManager.startRelativeAltitudeUpdatesToQueue(NSOperationQueue()) {
+                (data, error) in
+                print (data)
+                // internal implementation
+            }
+        }
+        else{
+            print("Altitude Not available")
         }
     }
 }
